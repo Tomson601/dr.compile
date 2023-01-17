@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
@@ -22,6 +24,16 @@ int main(int argc, char *argv[]) {
                 start++;
                 *end = '\0';
                 printf("%s\n", start);
+            }
+        } else if (strstr(code, "+") != NULL || strstr(code, "-") != NULL ||
+                   strstr(code, "*") != NULL || strstr(code, "/") != NULL ) {
+            char *result;
+            double final_result = strtod(code, &result);
+            if (*result) {
+                printf("Invalid input");
+            }
+            else {
+                printf("Wynik: %f\n", final_result);
             }
         } else {
             printf("Nieznana komenda.\n");

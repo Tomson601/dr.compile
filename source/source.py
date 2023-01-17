@@ -1,1 +1,2 @@
-print('Sima!')
+print('Witam państwo')
++3

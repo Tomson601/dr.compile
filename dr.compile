@@ -1,2 +1,2 @@
 #!/bin/bash
-./doc source/source.py
+./doc.out source/source.py

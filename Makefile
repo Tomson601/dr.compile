@@ -1,2 +1,2 @@
 all:
-	gcc source/main.c -o doc
+	gcc source/main.c -o doc.out

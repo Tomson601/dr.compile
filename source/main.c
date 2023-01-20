@@ -5,6 +5,8 @@
 int main(int argc, char *argv[])
 {
     double num1, num2, result = 0;
+    double variables[26];
+    double value;
     char operator;
 
     // Check if there are arguments
@@ -39,6 +41,31 @@ int main(int argc, char *argv[])
             }
         }
 
+        else if (strstr(code, "=") != NULL) {
+            char variableName = code[0];
+            if (variableName >= 'a' && variableName <= 'z') {
+                sscanf(code, "%c = %lf", &variableName, &value);
+                variables[variableName - 'a'] = value;
+            }
+        }
+
+        else if (strstr(code, "print(") != NULL)
+        {
+            char *start = strstr(code, "(");
+            char *end = strstr(code, ")");
+            if (start != NULL && end != NULL)
+            {
+                start++;
+                *end = '\0';
+                for (int i = 0; i < 26; i++) {
+                    char var_char = i + 'a';
+                    if (var_char == *start){
+                        printf("%lf\n", variables[i]);
+                    }
+                }
+            }
+        }
+
         else if (sscanf(code, "%lf %c %lf", &num1, &operator, & num2) == 3)
         {
             switch (operator)
@@ -59,6 +86,9 @@ int main(int argc, char *argv[])
                 result = num1 / num2;
                 printf("%f\n", result);
                 break;
+            default:
+                printf("Nieznany operator: %c\n", operator);
+                continue;
             }
         }
     }

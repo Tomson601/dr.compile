@@ -1,2 +1,2 @@
-all: dr_compile
-*****gcc source/main.c -o doc
+all:
+	gcc source/main.c -o doc
